@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ANT file
+	Copyright 2015 IS2T. All rights reserved.
+	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+-->
+<project name="numeric.fft" default="numeric.fft/export">
+
+	<dirname file="${ant.file.numeric.fft}" property="numeric.fft.project"/>
+	<basename file="${numeric.fft.project}" property="numeric.fft.projectname"/>
+	<dirname file="${numeric.fft.project}" property="numeric.fft.project.container"/>
+	<property name="numeric.fft.output.dirname" value="dist"/>
+	<property name="numeric.fft.output.dir" location="${numeric.fft.project}/${numeric.fft.output.dirname}"/>
+
+	<target name="numeric.fft/export">
+		<fileset id="numeric.fft.files" dir="${numeric.fft.project.container}">
+			<include name="${numeric.fft.projectname}/**"/>
+			<exclude name="${numeric.fft.projectname}/${numeric.fft.output.dirname}/**"/>
+			<exclude name="*/bin*/**"/>
+			<exclude name="*/com.*/**"/>
+			<exclude name="*/*.map"/>
+			<exclude name="*/**/.jazzignore"/>
+			<exclude name="*/**/.gitignore"/>
+			<exclude name="*/**/.DS_Store"/>
+			<exclude name="*/launches/*.properties"/>
+			<exclude name="*/.settings/org.sonar.ide.eclipse.core.prefs"/>
+		</fileset>
+		<tstamp>
+			<format property="version" pattern="yyyyMMdd" />
+		</tstamp>
+		<zip destfile="${numeric.fft.output.dir}/${numeric.fft.projectname}-${version}.zip">
+			<fileset refid="numeric.fft.files" />
+		</zip>
+	</target>
+		
+</project>
