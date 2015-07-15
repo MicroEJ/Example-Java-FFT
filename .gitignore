@@ -6,5 +6,4 @@
 
 /launches/*.properties
 /.sonar
-/.jazzignore
 /com.*
